@@ -9,3 +9,58 @@
     
     Запросить ФИО сотрудника и вывести по нему информацию.
 """
+
+marine_staff = [
+    {
+        "FullName": "Пупкин Иван Сергеевич",
+        "Position": "Капитан",
+        "YearOfBirth": 1980,
+        "Skills": ["управление экипажем", "планирование маршрута", "ругаться матом"],
+        "Children": [{"Name": "Екатерина", "YearOfBirth": 2008}],
+    },
+    {
+        "FullName": "Питькин Сергей Иванович",
+        "Position": "Боцман",
+        "YearOfBirth": 1985,
+        "Skills": ["упраление грузом", "поддержание порядка на корабле"],
+        "Children": [{"Name": "Иван", "YearOfBirth": 2011}],
+    },
+    {
+        "FullName": "Весельчак Иван Алексеевич",
+        "Position": "Кок",
+        "YearOfBirth": 1990,
+        "Skills": ["приготовление пищи", "закупка продуктов"],
+        "Children": [],
+    },
+    {
+        "FullName": "Круткин Алексей Дмитриевич",
+        "Position": "Штурман",
+        "YearOfBirth": 1975,
+        "Skills": ["навигация", "планирование маршрута"],
+        "Children": [
+            {"Name": "Александр", "YearOfBirth": 2005},
+            {"Name": "Мария", "YearOfBirth": 2007},
+        ],
+    },
+    {
+        "FullName": "Живчик Дмитрий Петрович",
+        "Position": "Матрос",
+        "YearOfBirth": 1992,
+        "Skills": ["поддержание порядка", "помощь в уборке", "выполнение приказов"],
+        "Children": [{"Name": "Виктор", "YearOfBirth": 2013}],
+    },
+]
+
+input_name = input("Введите ФИО сотрудника, можно часть (будем искать в базе): ")
+
+# поиск по подстроке
+filtered_staff = list(
+    filter(lambda x: input_name.lower() in x["FullName"].lower(), marine_staff)
+)
+if filtered_staff:
+    # строка для печати, без цикла с map, ужасно нечитаемо но без цикла!
+    msg = f"Информация о сотруднике {input_name}:\n"
+    msg += "\n".join(map(lambda x: f"{x[0]}: {x[1]}", filtered_staff[0].items()))
+    print(msg)
+else:
+    print(f"Сотрудника {input_name} нет в базе")
