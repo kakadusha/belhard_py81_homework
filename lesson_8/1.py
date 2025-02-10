@@ -26,7 +26,7 @@ def short_name(name: str, n_p_s: bool = False) -> str:
 if __name__ == "__main__":
     print("Тесты\n---")
     print(short_name("Иванов Андрей Владимирович", True))
-    print(short_name("Иванов Андрей Владимирович", False))
+    print(short_name("Иванов Андрей Владимирович"))
     try:
         print(short_name("Иванов Андрей"))
     except ValueError as e:
