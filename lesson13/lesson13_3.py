@@ -121,7 +121,7 @@ class Arena:
             print()
 
         winner = self.warriors[0]
-        print(f"Победил воин: {winner.name}!")
+        print(f"Победил воин: {winner.name}!\n")
         return winner
 
 
@@ -157,6 +157,7 @@ if __name__ == "__main__":
         color="green",
     )
     hero4 = Elf("Legolas", health=31, armor=25, strong=10, color="green")
+    # снаряжение
     hero1.equip(iron_sword)
     hero2.equip(short_bow)
     hero4.equip(short_bow)
