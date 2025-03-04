@@ -13,11 +13,11 @@ says таким образом, чтобы он возвращал строку 
 - "{кличка} - корова. Говорит МУ!" для класса Cow
 """
 
-from cat import Cat
-from dog import Dog
-from cow import Cow
+from animals.cat import Cat
+from animals.dog import Dog
+from animals.cow import Cow
 
-from animal import Animal, WildAnimal
+from animals.animal import Animal, WildAnimal
 
 
 # из за Мета-класса MetaAnimal, который проверяет наличие метода says в классе наследнике
