@@ -2,7 +2,7 @@
 класс Cow
 """
 
-from animal import Animal
+from animals.animal import Animal
 
 
 class Cow(Animal):
