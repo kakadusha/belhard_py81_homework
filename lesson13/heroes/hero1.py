@@ -172,11 +172,14 @@ class Mag(Hero):
         self.points = self.mana
         return self.points
 
-    def print_info(self):
+    def print_info(self, ident: str = ""):
         info = (
-            "<:-{ " + self.name + f"\n{super()._get_info()}\n" + f"Mana: {self.mana}\n"
+            ["<:-{) " + self.name]
+            + super()._get_info().split("\n")
+            + [f"Mana: {self.mana}"]
         )
-        print(info)
+        for s in info:
+            print(ident + s)
 
     def special_attack(self, target) -> str:
         """Атакует цель магией"""
@@ -215,14 +218,14 @@ class Orc(Hero):
         self.points = self.anger
         return self.points
 
-    def print_info(self):
+    def print_info(self, ident: str = ""):
         info = (
-            "(*-] "
-            + self.name
-            + f"\n{super()._get_info()}\n"
-            + f"Anger: {self.anger}\n"
+            [f"@-[.] {self.name}"]
+            + super()._get_info().split("\n")
+            + [f"Anger: {self.anger}"]
         )
-        print(info)
+        for s in info:
+            print(ident + s)
 
     def special_attack(self, target) -> str:
         """Атакует цель злобно"""
@@ -248,6 +251,15 @@ class Elf(Mag):
 
         super().__init__(name, health, armor, strong, color, status_len)
         self.mana = mana
+
+    def print_info(self, ident: str = ""):
+        info = (
+            [");-J " + self.name]
+            + super()._get_info().split("\n")
+            + [f"Mana: {self.mana}"]
+        )
+        for s in info:
+            print(ident + s)
 
 
 if __name__ == "__main__":

@@ -46,6 +46,8 @@ from heroes.weapon import (
     short_bow,
 )
 
+IDEND_WIDTH = 20
+
 
 class Arena:
     """
@@ -69,11 +71,16 @@ class Arena:
         self.warriors.append(warrior)
         print(f"Теперь {warrior.name} участвует в битве!")
 
-    def choose_warrior(self):
+    def choose_warrior(self, exclude=None):
         """
-        Выбрать случайного воина из списка
+        Выбрать случайного воина из списка воинов, исключая exclude
         """
-        return self.warriors[randint(0, len(self.warriors) - 1)]
+        if exclude:
+            ret_warriors = [w for w in self.warriors if w != exclude]
+        else:
+            ret_warriors = self.warriors
+
+        return ret_warriors[randint(0, len(ret_warriors) - 1)]
 
     def battle(self, sleep_time=0.1, keybord_control=False):
         """
@@ -82,29 +89,35 @@ class Arena:
         if len(self.warriors) < 2:
             raise ValueError("Количество воинов на арене должно быть больше 1!")
 
+        round_cnt = 0
         while len(self.warriors) > 1:
+            round_cnt += 1
+            print(
+                f"\n  *********************** Round {round_cnt} ***********************\n"
+            )
             attacker = self.choose_warrior()
-            defender = self.choose_warrior()
+            defender = self.choose_warrior(attacker)
 
             for h in (attacker, defender):
                 if isinstance(h, Orc):
-                    h.add_anger()
+                    h.add_anger(3)
                 elif isinstance(h, Mag):
                     h.add_mana(5)
 
             print(f"{attacker.name} атакует {defender.name}!")
             print(attacker.attack(defender))
             print(defender.attack(attacker))
-            defender.print_info()
-            attacker.print_info()
+            print()
+            defender.print_info("  ")
+            attacker.print_info(" " * IDEND_WIDTH)
 
             if defender.health <= 0:
                 self.warriors.remove(defender)
-                print(f"{defender.name} пал в битве!")
+                print(f"\n{defender.name} пал в битве!\n RIP!\n")
 
             sleep(sleep_time)
             if keybord_control:
-                input("> Press Enter to continue...")
+                input("\n> Press Enter to continue...")
             print()
 
         winner = self.warriors[0]
@@ -153,7 +166,7 @@ if __name__ == "__main__":
     arena.add_warrior(hero2)
     arena.add_warrior(hero3)
     arena.add_warrior(hero4)
-    arena.battle()
+    arena.battle(sleep_time=0.2, keybord_control=True)
 
     ### тестовый прогон ###
     # h_list = [hero1, hero2, hero3, hero4]
