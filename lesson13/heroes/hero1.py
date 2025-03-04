@@ -192,7 +192,9 @@ class Mag(Hero):
         target.health = max(target.health, 0)
         target.health_bar.update()
 
-        return f"{self.name} dealt {self.mana} damage to {target.name} with MAGIC!!!"
+        return (
+            f"{self.name} dealt {self.mana} damage to {target.name} with ✨MAGIC✨!!!"
+        )
 
 
 class Orc(Hero):
@@ -237,7 +239,9 @@ class Orc(Hero):
 
         target.health = max(target.health, 0)
         target.health_bar.update()
-        return f"{self.name} dealt {self.anger} damage to {target.name} with ANGER!!!"
+        return (
+            f"{self.name} dealt {self.anger} damage to {target.name} with 😡 ANGER!!!"
+        )
 
 
 class Elf(Mag):
