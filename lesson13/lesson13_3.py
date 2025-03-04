@@ -95,8 +95,8 @@ class Arena:
             print(f"{attacker.name} атакует {defender.name}!")
             print(attacker.attack(defender))
             print(defender.attack(attacker))
-            print(defender.print_info())
-            print(attacker.print_info())
+            defender.print_info()
+            attacker.print_info()
 
             if defender.health <= 0:
                 self.warriors.remove(defender)
