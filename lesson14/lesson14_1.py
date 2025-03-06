@@ -114,3 +114,6 @@ print(user.verify_password("secure_password"))  # True
 
 user2 = User("учфьзду_гыук2", "example_user")
 print(user2.verify_password("secure_password"))  # False
+
+user2.password = "secure_password"  # установка нового пароля разрешена через setter
+print(user2.verify_password("secure_password"))  # True
